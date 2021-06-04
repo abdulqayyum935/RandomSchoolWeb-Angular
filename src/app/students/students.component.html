@@ -1,0 +1,48 @@
+<h1>Students</h1>
+
+<p>
+    <a routerLink='/add-new-student'>Create New</a>
+</p>
+<table class="table" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>
+               Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Courses
+            </th>
+            <th>
+               Date of Birth
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+              
+            <tr *ngFor="let student of students | async">
+                <td>
+                    {{student.name}}
+                </td>
+                <td>
+                    {{student.email}}
+                </td>
+                <td align="center">
+                    {{student.studentCourses.length}}
+                </td>
+                <td>
+                    {{student.dateOfBirth | date:'dd-MM-yyyy'}}
+                </td>
+                <td>
+                    <a [routerLink]="['/edit',student.id]">Edit</a> |
+                    <a [routerLink]="['/details',student.id]">Details</a> |
+                    <a [routerLink]="['/delete',student.id]">Delete</a>
+                </td>
+            </tr>
+    </tbody>
+</table>
+

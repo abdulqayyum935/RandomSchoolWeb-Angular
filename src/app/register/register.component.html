@@ -1,0 +1,48 @@
+<div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" id="name" class="form-control">
+            <div class="alert alert-danger" *ngIf="name && (name.touched || name.dirty) && name?.errors">
+                <div *ngIf="name && name?.errors?.required">
+                    Name is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" formControlName="email" id="email" class="form-control">
+            <div *ngIf="email && email.pending">Checking email address availiblity.</div>
+            <div class="alert alert-danger" *ngIf="email && (email.touched || email.dirty) && email?.invalid">
+                <div *ngIf="email && email?.errors?.required">
+                    Email is required.
+                </div>
+                <div *ngIf="email && email?.errors?.email">
+                    Email is invalid
+                </div>
+                <div *ngIf="email && email?.errors?.message">
+                    {{email.value}} is not available.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password" class="form-control">
+            <div class="alert alert-danger"
+                *ngIf="password && (password.touched || password.dirty) && password?.errors?.required">
+                Password is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control">
+            <div class="alert alert-danger" *ngIf="confirmPassword && confirmPassword?.errors?.noMatch">
+                Password and confirm password does not match.
+            </div>
+        </div>
+
+        <button type="submit" style="margin-top:10px" [disabled]="!registerForm.valid" class="btn btn-primary">Register</button>
+    </form>
+</div>

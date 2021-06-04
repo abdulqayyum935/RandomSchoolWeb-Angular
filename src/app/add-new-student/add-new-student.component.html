@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Add new student</h2>
+<!-- {{addStudentForm.value | json}}
+{{choosenCourses | json}} -->
+    <form [formGroup]="addStudentForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" id="name" class="form-control">
+            <!-- <div class="alert alert-danger">
+                required
+            </div> -->
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" formControlName="email" id="email" class="form-control">
+            <!-- <div class="alert alert-danger">
+                required
+            </div> -->
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of birth</label>
+            <input type="date" id="dob" formControlName="dob"  class="form-control">
+            <!-- <div class="alert alert-danger">
+                required
+            </div> -->
+        </div>
+        <div class="form-group">
+            <label>Courses</label>
+            <div class="form-check" *ngFor="let f of courses.controls;let i=index">
+                <label class="form-check-label">
+                <input  class="form-check-input" (change)="checkBoxToggle(allCourses[i].id,$event)" type="checkbox" formControlNmae="i">
+                {{allCourses[i].title}}</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>

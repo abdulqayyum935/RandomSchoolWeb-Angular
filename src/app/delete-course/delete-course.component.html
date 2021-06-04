@@ -1,0 +1,17 @@
+<div class="container">
+<h3>Delete Course</h3>
+    <div class="card" *ngIf="(course | async) as c">
+        <div class="card-body">
+           <h5 class="card-title">{{c?.title}}</h5>
+              <p class="card-text">Credit Hour: <strong>{{c?.creditHour}}</strong></p>
+            <p class="card-text" *ngIf="c?.isActive">
+                Active? :<strong>Yes</strong>
+            </p>
+            <p class="card-text" *ngIf="c?.isActive==false">
+                Active? :<strong>No</strong>
+            </p>
+            <button class="btn btn-warning" (click)="delete()">Delete</button> <br />
+            <a routerLink="/courses" class="card-link">Back to list</a>
+        </div>
+    </div>
+</div>

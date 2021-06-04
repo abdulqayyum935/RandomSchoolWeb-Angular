@@ -1,0 +1,28 @@
+<div class="container">
+    <h3>Delete</h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <h5 class="card-header">{{student?.name}}</h5>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Email:<strong> {{student?.email}}</strong><br />
+                            Date of birth:<strong> {{student?.dateOfBirth | date}}</strong>
+                        </p>
+                        <a routerLink='/students' class="btn btn-primary">Back</a>
+                        <button class="btn btn-warning" (click)="delete(student.id)" >Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <h3>Courses</h3>
+                <ul class="list-group" *ngIf="student?.courses">
+                    <li class="list-group-item" *ngFor="let c of student?.courses">
+                     <span *ngIf="c.isChecked">  {{c.isChecked && c.title}} </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

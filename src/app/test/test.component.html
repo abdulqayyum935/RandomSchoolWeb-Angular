@@ -1,0 +1,33 @@
+<div class="container">
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" id="name" class="form-control">
+            <div class="alert alert-danger" *ngIf="name && name?.errors">
+                {{name && name?.errors?.custom}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" class="form-control" (blur)="onBlur()">
+            <div class="alert alert-danger" *ngIf="email && email?.errors?.custom">
+                {{email && email?.errors?.custom}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" formControlName="dateOfBirth" id="dob" class="form-control">
+            <div class="alert alert-danger" *ngIf="dateOfBirth && dateOfBirth?.errors?.custom">
+                {{dateOfBirth && dateOfBirth?.errors?.custom}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" formControlName="age" id="age" class="form-control">
+            <div class="alert alert-danger" *ngIf="age && age?.errors?.custom">
+                {{age && age?.errors?.custom}}
+            </div>
+        </div>
+        <button class="btn btn-primary" id="saveBtn">Save</button>
+    </form>
+</div>

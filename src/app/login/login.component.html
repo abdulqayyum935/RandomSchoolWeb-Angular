@@ -1,0 +1,16 @@
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="alert alert-danger" *ngIf="errorMessage">
+            Invalid email or password.
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" formControlName="email" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" id="password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success" style="margin-top:10px">Login</button>
+    </form>
+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{course && course.title}}</h5>
+            <p class="card-text">Credit Hour: <strong>{{course && course.creditHour}}</strong></p>
+             <p class="card-text" *ngIf="course && course.isActive" >
+                Active? :<strong>Yes</strong> 
+             </p>
+             <p class="card-text" *ngIf="course && course.isActive==false" >
+                Active? :<strong>No</strong> 
+             </p>
+                <a routerLink="/courses" class="card-link">Back to list</a>
+        </div>
+    </div>
+</div>
