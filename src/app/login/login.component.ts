@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private router: Router,
-    private storage:StorageService
-    ) { }
+    private storage: StorageService
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.loginForm.value)
       .pipe(catchError(this.handleError.bind(this))).subscribe(r => {
-        // localStorage.setItem("userDetails",JSON.stringify(r));
+        this.authService.sendAuthStateChangeNotification(true)
+        this.authService.sentUserNameChangeNotification(r.userName)
         this.storage.setToken(r.token)
         this.storage.saveUserName(r.userName);
-        // this.storage.loggedIn.next(true);
-        // this.storage.loggedUser.next(r.userName)
+        this.storage.setRefreshToken(r.refreshToken)
 
         this.router.navigateByUrl('/students')
       })

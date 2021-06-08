@@ -23,7 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import {JwtTokenInterceptor} from '../app/services/jwt-token.interceptor';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component'
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { MenuComponent } from './menu/menu.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component'
     FileUploadComponent,
     LoginComponent,
     RegisterComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

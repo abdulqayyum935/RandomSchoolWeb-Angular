@@ -12,21 +12,30 @@ export class StorageService {
   // public loggedIn = new BehaviorSubject<boolean>(false);
   // public loggedUser= new BehaviorSubject<string>(<string>{});
 
-//   get isLoggedIn() {
-//   return this.loggedIn.asObservable(); // {2}
-// }
+  //   get isLoggedIn() {
+  //   return this.loggedIn.asObservable(); // {2}
+  // }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
- getUserName() {
-     //return this.loggedUser.getValue();
-   return  localStorage.getItem('userName')
-   }
-
-  getToken(): string | null {
-    return localStorage.getItem('token')
+  setRefreshToken(token: string) {
+    localStorage.setItem('refreshToken', token);
   }
+
+  getUserName() {
+    let name = localStorage.getItem('userName') as string;
+    return name == null ? "-" : name;
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token')||'abc'
+  }
+
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refreshToken')
+  }
+
   isLoggedIn(): boolean {
     if (this.getToken() != null) {
       return true;
@@ -37,17 +46,19 @@ export class StorageService {
   Logout() {
     localStorage.clear();
   }
-  saveUserName(name:string){
-    localStorage.setItem('userName',name)
+  saveUserName(name: string) {
+    localStorage.setItem('userName', name)
   }
 
-  getUserRole(){
+  getUserRole() {
     const helper = new JwtHelperService();
-    let data= helper.decodeToken(this.getToken()||'')
+    let data = helper.decodeToken(this.getToken() || '')
     return data['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
   }
+  isTokenExpired() {
+    const helper = new JwtHelperService();
+    return helper.isTokenExpired(this.getToken() || '')
+  }
 
-  // getUserName(){
-  //   return localStorage.getItem('userName') || null;
-  // }
+
 }
