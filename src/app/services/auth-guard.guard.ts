@@ -20,12 +20,12 @@ export class AuthGuardGuard implements CanActivate, CanActivateChild, CanDeactiv
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (!this.storageService.isLoggedIn()) {
-      this.router.navigate(['/login'])
+      this.router.navigate(['login'])
       return false;
     }
 
     if (this.storageService.isTokenExpired() && this.storageService.getRefreshToken() !== null) {
-      console.log('here')
+      console.log('refreshing token')
       let token: string = this.storageService.getToken() || '';
       let refreshToken: string = this.storageService.getRefreshToken() || '';
       const credentials = JSON.stringify({ token, refreshToken: refreshToken });

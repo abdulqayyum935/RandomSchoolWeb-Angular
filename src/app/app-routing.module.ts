@@ -4,6 +4,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { AddNewStudentComponent } from './add-new-student/add-new-student.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CoursesComponent } from './courses/courses.component';
+import { CustomerComponent } from './customer/customer.component';
 import { DeleteCourseComponent } from './delete-course/delete-course.component';
 import { DeleteStudentComponent } from './delete-student/delete-student.component';
 import { DetailComponent } from './detail/detail.component';
@@ -27,6 +28,8 @@ const appRoutes: Routes = [
   { path: 'details/:id', component: DetailComponent, canActivate: [AuthGuardGuard] },
   { path: 'delete/:id', component: DeleteStudentComponent, canActivate: [AuthGuardGuard] },
   { path: 'person', component: PersonComponent, canActivate: [AuthGuardGuard] },
+
+  { path: 'customers', component: CustomerComponent, canActivate: [AuthGuardGuard] },
 
   // course related routes
   { path: 'courses', component: CoursesComponent, canActivate: [AuthGuardGuard], data: { role: 'student' } },

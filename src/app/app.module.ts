@@ -24,7 +24,13 @@ import { RegisterComponent } from './register/register.component';
 
 import {JwtTokenInterceptor} from '../app/services/jwt-token.interceptor';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-import { MenuComponent } from './menu/menu.component'
+import { MenuComponent } from './menu/menu.component';
+import { CustomerComponent } from './customer/customer.component';
+import { TrimTextPipe } from './pipes/trim-text.pipe'
+import { NgxPaginationModule } from 'ngx-pagination';
+import { DataTablesModule } from 'angular-datatables';
+import { FacebookLoginProvider,SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
+
 
 @NgModule({
   declarations: [
@@ -45,20 +51,59 @@ import { MenuComponent } from './menu/menu.component'
     LoginComponent,
     RegisterComponent,
     UnauthorizedComponent,
-    MenuComponent
+    MenuComponent,
+    CustomerComponent,
+    TrimTextPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    DataTablesModule,
+    SocialLoginModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,
     useClass:JwtTokenInterceptor,
     multi:true
-  }],
+  },{
+    provide:'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '570905553055-uas6umo4giptag8a3vo2l2nup5vvhdcu.apps.googleusercontent.com'
+          )
+        }
+      ]
+    } as SocialAuthServiceConfig
+  },{
+    provide:'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider(
+            '334202444725098'
+          )
+        }
+      ]
+    } as SocialAuthServiceConfig
+  }
+
+],
  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+/*
+app Id 334202444725098,
+secret 2469a79fdbd290d4bde874b5ae4d445a
+*/

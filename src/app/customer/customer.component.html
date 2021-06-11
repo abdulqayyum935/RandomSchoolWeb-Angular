@@ -1,0 +1,30 @@
+<div class="container">
+    <h3>Customers</h3>
+    <table datatable [dtOptions]="dtOptions" class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+            </tr>
+        </thead>
+        <tbody >
+            - <tr *ngFor="let r of collection | paginate: { itemsPerPage: 10, currentPage: p,totalItems:totalRecords}">
+                <th scope="row">{{r.id}}</th>
+                <td>{{r.firstName}}</td>
+                <td>{{r.lastName}}</td>
+                <td>{{r.email | trimText}}</td>
+                <td>{{r.contact}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

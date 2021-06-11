@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ExternalLoginService } from '../services/external-login.service';
 import { StorageService } from '../services/storage.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { StorageService } from '../services/storage.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private router:Router,private storageService:StorageService,private authService:AuthService) { }
+  constructor(private router:Router,private storageService:StorageService,private authService:AuthService,private externalLogin:ExternalLoginService) { }
   public isUserAuthenticated!: boolean;
   public userName!:string;
 
@@ -30,6 +31,7 @@ export class MenuComponent implements OnInit {
 
   logOut() {
     this.storageService.Logout();
+    this.externalLogin.signOut()
     this.router.navigate(['/login'])
   }
 }

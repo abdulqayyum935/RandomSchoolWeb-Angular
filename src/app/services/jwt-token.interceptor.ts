@@ -15,7 +15,8 @@ export class JwtTokenInterceptor implements HttpInterceptor {
     this.apiWithNoHeader = [
       'api/Auth/checkEmailAvailability',
       'api/Auth/register',
-      'api/Auth/login'
+      'api/Auth/login',
+      'api/Auth/refreshToken'
     ]
 
   }
